@@ -12,7 +12,7 @@ export type ButtonVariant =
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center font-medium border rounded transition-colors focus:outline-none focus:ring-4 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed',
+  'inline-flex items-center justify-center font-medium border rounded transition-colors focus:outline-none focus:ring-4 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-4 focus-visible:ring-offset-2',
   {
     variants: {
       size: {
@@ -79,6 +79,7 @@ export interface ButtonProps
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   children?: React.ReactNode;
+  ariaLabel?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -93,6 +94,7 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   style,
   disabled,
+  ariaLabel,
   ...props
 }) => {
   const customStyle = {
@@ -105,11 +107,16 @@ export const Button: React.FC<ButtonProps> = ({
     console.warn('Button: iconOnly is true but no icon provided');
   }
 
+  if (iconOnly && !ariaLabel && !props['aria-label']) {
+    console.warn('Button: iconOnly buttons should have aria-label or ariaLabel prop for accessibility');
+  }
+
   return (
     <button
       className={cn(buttonVariants({ variant, size, iconOnly }), className)}
       style={customStyle}
       disabled={disabled}
+      aria-label={ariaLabel}
       {...props}
     >
       {leftIcon && (
