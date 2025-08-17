@@ -12,29 +12,30 @@ export type ButtonVariant =
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center font-medium border rounded transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
+  'inline-flex items-center justify-center font-medium border rounded transition-colors focus:outline-none focus:ring-4 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed',
   {
     variants: {
-      variant: {
-        primary:
-          'bg-indigo-700 text-white border-indigo-700 hover:bg-indigo-800 hover:border-indigo-800 focus:ring-indigo-100 shadow-sm',
-        secondary:
-          'bg-white text-neutral-900 border-neutral-200 border-[0.5px] border-solid hover:bg-neutral-50 hover:border focus:ring-neutral-100 focus:ring-4 focus:ring-offset-0 shadow-sm',
-        tertiary:
-          'bg-transparent text-gray-900 border-transparent hover:bg-gray-100 focus:ring-gray-500 shadow-sm',
-        'link-color':
-          'bg-transparent text-blue-600 border-transparent hover:text-blue-700 hover:underline focus:ring-blue-500 p-0 border-none shadow-none',
-        'link-gray':
-          'bg-transparent text-gray-600 border-transparent hover:text-gray-700 hover:underline focus:ring-gray-500 p-0 border-none shadow-none',
-        destructive:
-          'bg-red-600 text-white border-red-600 hover:bg-red-700 hover:border-red-700 focus:ring-red-500 shadow-sm',
-      },
       size: {
         sm: 'px-4 py-2.5 text-sm',
         md: 'px-5 py-2.5 text-base',
         lg: 'px-6 py-3 text-base',
         xl: 'px-6 py-4 text-lg',
       },
+      variant: {
+        primary:
+          'bg-indigo-700 text-white border-indigo-700 hover:bg-indigo-800 hover:border-indigo-800 focus:ring-indigo-100 shadow-sm',
+        secondary:
+          'bg-white text-neutral-900 border-neutral-200 border-[0.5px] border-solid hover:bg-neutral-50 hover:border focus:ring-neutral-100 shadow-sm',
+        tertiary:
+          'bg-white text-indigo-700 border-transparent hover:bg-neutral-50 focus:ring-indigo-100',
+        'link-color':
+          'bg-transparent text-indigo-700 border-transparent hover:text-indigo-800 focus:ring-indigo-100 p-0',
+        'link-gray':
+          'bg-transparent text-neutral-600 border-transparent hover:text-neutral-900 focus:ring-indigo-100 p-0',
+        destructive:
+          'bg-red-600 text-white border-red-600 hover:bg-red-700 hover:border-red-700 focus:ring-red-100 shadow-sm',
+      },
+
       iconOnly: {
         true: '',
         false: '',
@@ -44,12 +45,12 @@ const buttonVariants = cva(
       {
         iconOnly: true,
         size: 'sm',
-        class: 'h-8 w-8 p-1',
+        class: 'h-10 w-10 p-1',
       },
       {
         iconOnly: true,
         size: 'md',
-        class: 'h-10 w-10 p-2',
+        class: 'h-11 w-11 p-2',
       },
       {
         iconOnly: true,
@@ -120,7 +121,9 @@ export const Button: React.FC<ButtonProps> = ({
           {leftIcon}
         </span>
       )}
-      {!iconOnly && children}
+      {!iconOnly && children && (
+        <span className="flex items-center">{children}</span>
+      )}
       {rightIcon && (
         <span
           className={cn('flex items-center', {
