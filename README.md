@@ -23,50 +23,113 @@ pnpm add great-component-library
 ## 🛠️ Usage
 
 ```tsx
-import { Button } from 'great-component-library';
+import { Button, StarIcon } from 'great-component-library';
 
 function App() {
   return (
-    <Button variant="primary" size="md">
-      Click me!
-    </Button>
+    <div>
+      <Button variant="primary" size="md">
+        Click me!
+      </Button>
+      
+      <Button variant="secondary" leftIcon={<StarIcon size="16" />}>
+        With Icon
+      </Button>
+    </div>
   );
 }
 ```
 
 ## 🧩 Available Components
 
-- **Button** - Customizable button component with multiple variants and sizes
+### Button
+
+A flexible button component with multiple variants, sizes, and icon support.
+
+**Features:**
+- 6 variants: `primary`, `secondary`, `tertiary`, `link-color`, `link-gray`, `destructive`
+- 4 sizes: `sm`, `md`, `lg`, `xl`
+- Icon support (left, right, or icon-only)
+- Custom colors and background colors
+- Full accessibility support
+- TypeScript definitions
+
+**Example:**
+```tsx
+import { Button } from 'great-component-library';
+
+// Basic usage
+<Button variant="primary" size="md">
+  Click me!
+</Button>
+
+// With icons
+<Button variant="secondary" leftIcon={<StarIcon />}>
+  Starred
+</Button>
+
+// Icon only
+<Button variant="tertiary" iconOnly leftIcon={<StarIcon />} />
+
+// Custom styling
+<Button 
+  variant="primary" 
+  backgroundColor="#custom-color"
+  className="custom-class"
+>
+  Custom Button
+</Button>
+```
+
+### StarIcon
+
+A simple star icon component with customizable size.
+
+**Features:**
+- 2 sizes: `16`, `20`
+- Inherits current color
+- Custom className support
+
+**Example:**
+```tsx
+import { StarIcon } from 'great-component-library';
+
+<StarIcon size="20" className="text-yellow-500" />
+```
 
 ## 🏗️ Development
 
 ### Prerequisites
 
-- Node.js 16+ 
+- Node.js 16+
 - npm, yarn, or pnpm
 
 ### Setup
 
-1. Clone the repository:
-```bash
-git clone https://github.com/kadirbasyigit/great-component-library.git
-cd great-component-library
-```
+1. **Depoyu klonlayın:**
 
-2. Install dependencies:
-```bash
-npm install
-```
+   ```bash
+   git clone https://github.com/kadirbasyigit/great-component-library.git
+   cd great-component-library
+   ```
 
-3. Start the development server:
-```bash
-npm run dev
-```
+2. **Bağımlılıkları yükleyin:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Geliştirme sunucusunu başlatın:**
+
+   ```bash
+   npm run dev
+   ```
 
 ### Scripts
 
 - `npm run dev` - Start development server with hot reload
 - `npm run build` - Build the library for production
+- `npm run lint` - Run ESLint for code quality
 - `npm run preview` - Preview the production build
 
 ## 🛠️ Built With
@@ -75,6 +138,9 @@ npm run dev
 - [TypeScript](https://www.typescriptlang.org/) - Type Safety
 - [Vite](https://vitejs.dev/) - Build Tool
 - [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Class Variance Authority](https://cva.style/docs) - Variant-based component styling
+- [clsx](https://github.com/lukeed/clsx) - Conditional className utility
+- [tailwind-merge](https://github.com/dcastil/tailwind-merge) - Tailwind CSS class merging
 
 ## 📄 License
 
